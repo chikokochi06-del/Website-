@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Web Profile | Sederhana & Modern</title>
+    <!-- Google Fonts untuk tampilan lebih fresh -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700&display=swap" rel="stylesheet">
+    <!-- Font Awesome 6 (free icons) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #f5f7fc 0%, #eef2f9 100%);
+            color: #1e2a3e;
+            line-height: 1.5;
+            padding: 2rem 1.5rem;
+            min-height: 100vh;
+        }
+
+        /* container utama */
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            background: rgba(255,255,255,0.85);
+            backdrop-filter: blur(2px);
+            border-radius: 2rem;
+            box-shadow: 0 20px 35px -12px rgba(0,0,0,0.1);
+            overflow: hidden;
+            transition: all 0.2s ease;
+        }
+
+        /* header / hero area */
+        .hero {
+            background: linear-gradient(120deg, #2c3e66, #1a2a44);
+            padding: 2.5rem 2rem;
+            text-align: center;
+            color: white;
+        }
+
+        .avatar {
+            width: 130px;
+            height: 130px;
+            background: #ffffff20;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.2rem;
+            border: 3px solid rgba(255,255,255,0.5);
+            backdrop-filter: blur(4px);
+            box-shadow: 0 10px 20px -5px rgba(0,0,0,0.2);
+        }
+
+        .avatar i {
+            font-size: 4rem;
+            color: white;
+            filter: drop-shadow(0 2px 5px rgba(0,0,0,0.2));
+        }
+
+        .hero h1 {
+            font-size: 2.2rem;
+            font-weight: 700;
+            letter-spacing: -0.3px;
+            margin-bottom: 0.5rem;
+        }
+
+        .hero .tagline {
+            font-size: 1.1rem;
+            font-weight: 400;
+            opacity: 0.9;
+            background: rgba(255,255,255,0.15);
+            display: inline-block;
+            padding: 0.3rem 1rem;
+            border-radius: 40px;
+            backdrop-filter: blur(4px);
+            margin-top: 0.5rem;
+        }
+
+        /* konten utama grid */
+        .content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            padding: 2rem 2rem 2.5rem;
+        }
+
+        /* kolom kiri (bio & info) */
+        .left-panel {
+            flex: 1.2;
+            min-width: 220px;
+        }
+
+        /* kolom kanan (keahlian & sosial) */
+        .right-panel {
+            flex: 1.8;
+            min-width: 260px;
+        }
+
+        /* card style */
+        .card {
+            background: white;
+            border-radius: 1.5rem;
+            padding: 1.5rem;
+            margin-bottom: 1.8rem;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.02), 0 2px 6px rgba(0,0,0,0.05);
+            transition: transform 0.2s, box-shadow 0.2s;
+            border: 1px solid rgba(0,0,0,0.03);
+        }
+
+        .card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 20px 30px -12px rgba(0,0,0,0.1);
+        }
+
+        .card-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            border-left: 4px solid #2c3e66;
+            padding-left: 0.9rem;
+            color: #0f2b3d;
+        }
+
+        .card-title i {
+            color: #2c3e66;
+            font-size: 1.3rem;
+        }
+
+        .bio-text {
+            color: #2d3e50;
+            margin-bottom: 1.2rem;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            margin-bottom: 0.9rem;
+            font-size: 0.9rem;
+            color: #1f3a4b;
+            flex-wrap: wrap;
+        }
+
+        .info-item i {
+            width: 28px;
+            color: #2c3e66;
+            font-size: 1.1rem;
+            text-align: center;
+        }
+
+        .skill-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.7rem;
+            margin-top: 0.5rem;
+        }
+
+        .skill-badge {
+            background: #eef2ff;
+            padding: 0.4rem 1rem;
+            border-radius: 40px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: #1e3a5f;
+            transition: all 0.2s;
+            border: 1px solid #dce3f0;
+        }
+
+        .skill-badge:hover {
+            background: #2c3e66;
+            color: white;
+            border-color: #2c3e66;
+            transform: scale(0.97);
+        }
+
+        /* sosial media icons */
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-top: 0.5rem;
+        }
+
+        .social-btn {
+            background: #f0f4fa;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 0.6rem 1.2rem;
+            border-radius: 60px;
+            text-decoration: none;
+            color: #1e2a3e;
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: all 0.25s;
+            border: 1px solid #e2e8f0;
+        }
+
+        .social-btn i {
+            font-size: 1.2rem;
+        }
+
+        .social-btn:hover {
+            background: #2c3e66;
+            color: white;
+            border-color: #2c3e66;
+            transform: translateY(-2px);
+        }
+
+        /* proyek / portofolio mini */
+        .project-item {
+            margin-bottom: 1rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #edf2f7;
+        }
+
+        .project-item:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+
+        .project-title {
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .project-title i {
+            color: #2c3e66;
+            font-size: 0.9rem;
+        }
+
+        .project-desc {
+            font-size: 0.85rem;
+            color: #4a5b6e;
+            margin-left: 1.6rem;
+        }
+
+        hr {
+            margin: 1rem 0;
+            border: none;
+            height: 1px;
+            background: linear-gradient(to right, #e0e7f0, transparent);
+        }
+
+        /* footer sederhana */
+        .footer {
+            background: #f8fafd;
+            text-align: center;
+            padding: 1rem 1rem;
+            font-size: 0.8rem;
+            color: #5d6f83;
+            border-top: 1px solid #e9edf2;
+        }
+
+        @media (max-width: 700px) {
+            body {
+                padding: 1rem;
+            }
+            .hero h1 {
+                font-size: 1.7rem;
+            }
+            .content {
+                padding: 1.5rem;
+                gap: 1rem;
+            }
+            .card-title {
+                font-size: 1.2rem;
+            }
+            .avatar {
+                width: 100px;
+                height: 100px;
+            }
+            .avatar i {
+                font-size: 3rem;
+            }
+        }
+
+        /* tombol kecil fungsional (opsional) */
+        .highlight {
+            background: #eef2ff;
+            border-radius: 30px;
+            padding: 0.2rem 0.6rem;
+            font-size: 0.7rem;
+            font-weight: 600;
+            color: #2c3e66;
+        }
+
+        a {
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <!-- Bagian Hero / Profil Atas -->
+    <div class="hero">
+        <div class="avatar">
+            <i class="fas fa-us-Astronaut"></i>   <img src= kk.jpg size=150&background
+             =2c3e50&color=fff&bold=true&length=2"
+                width="270" height="100" border="2"
+                 alt="Foto Profil" style="border-radius
+                 : 50%; border-color: #FFF6F;">
+            <!-- ikon keren -->
+ 
+       </div>
+        <h1>salwa aulia anjani <span style="font-weight: 400;">|</span> <span style="font-weight: 500;">murid</span></h1>
+        <div class="tagline">
+            <i class="fas fa-code"></i> SMK KOMPUTAMA MAJENANG
+        </div>
+    </div>
+
+    <!-- Konten utama 2 kolom -->
+    <div class="content">
+        <!-- Kolom Kiri: Bio & Kontak Detail -->
+        <div class="left-panel">
+            <div class="card">
+                <div class="card-title">
+                    <i class="fas fa-user-circle"></i>
+                    <span>Tentang Saya</span>
+                </div>
+                <div class="bio-text">
+                    Halo! Saya seorang siswa TKJ yang baru merintis perjalanan di dunia teknologi dan jaringan. Meskipun masih baru, saya punya semangat besar untuk belajar coding, merakit PC, hingga memahami sistem server. 
+                </div>
+                <div class="bio-text">
+                    Di luar dunia komputer, saya juga punya bakat menggambar—entah itu sketsa karakter atau ilustrasi digital. Saya percaya, perpaduan logika TKJ dan kreativitas gambar bisa membantu saya menciptakan desain antarmuka yang fungsional sekaligus estetik.
+                </div>
+                <hr>
+                <div class="info-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>jawa tengah, Indonesia</span>
+                </div>
+                <div class="info-item">
+                    <i class="fas fa-envelope"></i>
+                    <span>salwa.profile@example.com</span>
+                </div>
+                <div class="info-item">
+                    <i class="fas fa-calendar-alt"></i>
+                    <span>Bergabung sejak 2022</span>
+                </div>
+                <div class="info-item">
+                    <i class="fas fa-globe"></i>
+                    <span>salwa.dev</span>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-title">
+                    <i class="fas fa-heart"></i>
+                    <span>Minat & Hobi</span>
+                </div>
+                <div class="skill-list">
+                    <span class="skill-badge"><i class="fas fa-camera"></i> Fotografi</span>
+                    <span class="skill-badge"><i class="fas fa-book-open"></i> Membaca</span>
+                    <span class="skill-badge"><i class="fas fa-chess"></i> Strategi</span>
+                    <span class="skill-badge"><i class="fas fa-music"></i> Musik hip hop</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Kolom Kanan: Keahlian, Proyek & Sosial Media -->
+        <div class="right-panel">
+            <!-- Keahlian teknis -->
+            <div class="card">
+                <div class="card-title">
+                    <i class="fas fa-laptop-code"></i>
+                    <span>Keahlian Utama</span>
+                </div>
+                <div class="skill-list" style="margin-bottom: 0.4rem;">
+                    <span class="skill-badge">menggambar</span>
+                    <span class="skill-badge">ilustrasi (digital)</span>
+                    <span class="skill-badge">pengetahuan komputer dasar</span>
+                    <span class="skill-badge">Fotografi dasar</span>
+                    <span class="skill-badge">melukis (dasar)</span>
+                </div>
+                <div class="highlight" style="display: inline-block; margin-top: 12px;">
+                    <i class="fas fa-chart-line"></i> 3+ tahun pengalaman menggambar
+                </div>
+            </div>
+
+            <!-- Proyek unggulan (portofolio sederhana) -->
+            <div class="card">
+                <div class="card-title">
+                    <i class="fas fa-folder-open"></i>
+                    <span>keunggulan</span>
+                </div>
+                <div class="project-item">
+                    <div class="project-title">
+                        <i class="fas fa-globe"></i> 
+                        <span>menjadi konten kreator</span>
+                    </div>
+                    <div class="project-desc">
+                        Sebagai siswa TKJ, saya ingin menjadi konten kreator gambar yang tidak hanya piawai menggambar, tapi juga memahami teknologi di balik platform digital untuk menyebarkan karya.
+                    </div>
+                </div>
+                <div class="project-item">
+                    <div class="project-title">
+                        <i class="fas fa-tasks"></i> 
+                        <span>pengembangan diri</span>
+                    </div>
+                    <div class="project-desc">
+                        Dengan bakat menggambar yang saya miliki, saya ingin menjadi konten kreator gambar di media sosial sambil terus belajar TKJ agar bisa membuat desain grafis yang interaktif dan teknis.
+                    </div>
+                </div>
+                <div class="project-item">
+                    <div class="project-title">
+                        <i class="fas fa-store"></i> 
+                        <span>bisnis digital</span>
+                    </div>
+                    <div class="project-desc">
+                        Bakat menggambar membuat saya bisa mengubah ide visual menjadi karya digital. Ditambah ilmu TKJ, saya bisa mengelola dan mengamankan file-file tersebut di jaringan.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Media sosial & kontak cepat -->
+            <div class="card">
+                <div class="card-title">
+                    <i class="fas fa-share-alt"></i>
+                    <span>Temukan Saya</span>
+                </div>
+                <div class="social-links">
+                    <a href="#" class="social-btn" target="_blank"><i class="fab fa-threads"></i> threads</a>
+                    <a href="#" class="social-btn" target="_blank"><i class="fab fa-tiktok"></i> tiktok</a>
+                    <a href="#" class="social-btn" target="_blank"><i class="fab fa-instagram"></i> Instagram</a>
+                    
+                </div>
+                <hr>
+                <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px; margin-top: 10px;">
+                    <span style="font-size: 0.85rem;"><i class="fas fa-paper-plane"></i> Tersedia untuk kolaborasi</span>
+                    <span style="background: #eef2ff; padding: 4px 12px; border-radius: 50px; font-size: 0.75rem;"><i class="fas fa-clock"></i> Respon cepat</span>
+                </div>
+            </div>
+
+            <!-- sedikit sentuhan tambahan: quote / motto -->
+            <div class="card" style="background: linear-gradient(115deg, #fef9f0, #ffffff);">
+                <div class="card-title" style="border-left-color: #e67e22;">
+                    <i class="fas fa-quote-left" style="color: #e67e22;"></i>
+                    <span>Prinsip Berkarya</span>
+                </div>
+                <p style="font-style: italic; font-size: 0.9rem; color: #2c3e4e;">
+                    "Buat yang sederhana menjadi bermakna, dan yang kompleks tetap terasa ringan. Desain yang baik adalah dialog antara fungsi dan keindahan."
+                </p>
+                <div style="margin-top: 12px; text-align: right; font-size: 0.75rem; color:#5a6e7c;">
+                    — Ardian
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- footer sederhana dengan hak cipta -->
+    <div class="footer">
+        <i class="far fa-copyright"></i> 2025 Web Profile | Dibuat dengan <i class="fas fa-heart" style="color: #c44536;"></i> untuk portofolio sederhana
+    </div>
+</div>
+</body>
+</html>
+```
